@@ -8,7 +8,10 @@
   ...
 }: {
   imports = [
-    ./dwm.nix
+    ../../common/dwm.nix {
+      dwmCommit = "99a1e812295bcf65625a4b5a0dc1022658977920";
+      dwmblocksCommit = "a334789ec7b9171a3c8e1fcac2ffe8463ee438dc";
+    }
   ];
 
   config.nixpkgs.config.permittedInsecurePackages = [

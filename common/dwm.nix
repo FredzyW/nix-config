@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, dwmCommit, dwmblocksCommit, ... }:
 let
   dwm = pkgs.dwm.overrideAttrs (old: {
     src = builtins.fetchGit {
       url = "https://github.com/FredzyW/dwm-conf.git";
-      rev = "99a1e812295bcf65625a4b5a0dc1022658977920";
+      rev = dwmCommit;
     };
     nativeBuildInputs = with pkgs; [ #writing once works for both currently, sort of bug and feature
       xorg.libX11.dev
@@ -15,7 +15,7 @@ let
   dwmblocks = pkgs.dwmblocks.overrideAttrs (old: {
     src = builtins.fetchGit {
       url = "https://github.com/FredzyW/dwmblocks.git";
-      rev = "7c81c55390f2deec2a3804217abe80221ef6f46a";
+      rev = dwmblocksCommit;
       
     };
   });
