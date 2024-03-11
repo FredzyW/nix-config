@@ -11,11 +11,7 @@
     ../../common/dwm.nix
     ../../common/kitty.nix
     ../../common/tmux.nix
-    ../../common/zsh.nix {
-      hostname = "nix-desktop";
-      username = "fw";
-      directory = "desktop";
-    }
+    ./zsh.nix 
     ../../common/git.nix
     ../../common/nixpkgs.nix
     ../../common/firefox.nix

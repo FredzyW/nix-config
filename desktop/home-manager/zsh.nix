@@ -21,11 +21,11 @@
       ls="ls --color=auto";
       ll="ls -al --color=auto";
       ccr="gcc intopt.c && ./a.out";
-      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#${hostname}'";
-      nixc="lvim ~/nix-config/${directory}/nixos/configuration.nix";
-      reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#${hostname}'";
-      homec="lvim ~/nix-config/${directory}/home-manager/home.nix";
-      home="cd ~/nix-config/ && home-manager switch --flake '.#${username}@${hostname}'";
+      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#nix-desktop'";
+      nixc="lvim ~/nix-config/desktop/nixos/configuration.nix";
+      reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#nix-desktop'";
+      homec="lvim ~/nix-config/desktop/home-manager/home.nix";
+      home="cd ~/nix-config/ && home-manager switch --flake '.#fw@nix-desktop'";
       sdg="sudo nix-collect-garbage -d";
       udg="nix-collect-garbage -d";
       df="df -h";

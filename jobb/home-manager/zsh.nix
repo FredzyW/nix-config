@@ -1,3 +1,4 @@
+
 { pkgs, lib, ... }:
 {
   programs.zsh = {
@@ -21,11 +22,11 @@
       ls="ls --color=auto";
       ll="ls -al --color=auto";
       ccr="gcc intopt.c && ./a.out";
-      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#${hostname}'";
-      nixc="lvim ~/nix-config/${directory}/nixos/configuration.nix";
-      reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#${hostname}'";
-      homec="lvim ~/nix-config/${directory}/home-manager/home.nix";
-      home="cd ~/nix-config/ && home-manager switch --flake '.#${username}@${hostname}'";
+      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#fw-jobb'";
+      nixc="lvim ~/nix-config/jobb/nixos/configuration.nix";
+      reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#fw-jobb'";
+      homec="lvim ~/nix-config/jobb/home-manager/home.nix";
+      home="cd ~/nix-config/ && home-manager switch --flake '.#fw@fw-jobb'";
       sdg="sudo nix-collect-garbage -d";
       udg="nix-collect-garbage -d";
       df="df -h";

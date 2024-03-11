@@ -9,6 +9,7 @@
 }: {
   imports = [
     ../../common/dwm-2.nix
+    ./zsh.nix
   ];
 
   config.nixpkgs.config.permittedInsecurePackages = [

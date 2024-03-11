@@ -9,6 +9,7 @@
 }: {
   imports = [
     ../../common/dwm-2.nix 
+    ./zsh.nix
   ];
 
   nixpkgs = {

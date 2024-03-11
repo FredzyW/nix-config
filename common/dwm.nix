@@ -1,4 +1,3 @@
-{ dwmCommit, dwmblocksCommit, ... }:
 { pkgs, lib, ... }:
 let
   dwm = pkgs.dwm.overrideAttrs (old: {
