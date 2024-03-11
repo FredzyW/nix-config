@@ -94,10 +94,10 @@
       ll="ls -al --color=auto";
       ccr="gcc intopt.c && ./a.out";
       update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
-      nixc="sudoedit /etc/nixos/configuration.nix";
-      reb="sudo nixos-rebuild switch";
-      homec="lvim ~/.config/home-manager/home.nix";
-      home="home-manager switch";
+      nixc="lvim ~/nix-config/laptop/nixos/configuration.nix";
+      reb="sudo nixos-rebuild switch --flake '.#nix-laptop'";
+      homec="lvim ~/nix-config/laptop/home-manager/home.nix";
+      home="home-manager switch --flake '.#fw@nix-laptop'";
       sdg="sudo nix-collect-garbage -d";
       udg="nix-collect-garbage -d";
       df="df -h";

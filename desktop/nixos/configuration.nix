@@ -122,7 +122,7 @@
   };
 
   # TODO: Set your hostname
-  networking.hostName = "nix-laptop";
+  networking.hostName = "nix-desktop";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;

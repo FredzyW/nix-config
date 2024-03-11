@@ -11,9 +11,6 @@
     ./dwm.nix
   ];
 
-  config.nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
   nixpkgs = {
     # You can add overlays here
     overlays = [
