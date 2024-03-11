@@ -162,7 +162,7 @@
       enable = true;
       layout = "se";
       xkbVariant = "";
-      dpi = 140;
+      dpi = 100;
       displayManager = {
         startx = {
          enable = true;

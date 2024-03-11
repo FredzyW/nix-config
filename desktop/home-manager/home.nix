@@ -11,29 +11,14 @@
     ./dwm.nix
   ];
 
-  config.nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
 
     # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
+	    permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
     };
   };
 
@@ -59,7 +44,10 @@
     lazygit
     discord
     slack
+    gimp
+    openssh
   ];
+
   programs.home-manager.enable = true;
 
   xsession.enable = true;
@@ -93,11 +81,11 @@
       ls="ls --color=auto";
       ll="ls -al --color=auto";
       ccr="gcc intopt.c && ./a.out";
-      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
-      nixc="sudoedit /etc/nixos/configuration.nix";
-      reb="sudo nixos-rebuild switch";
-      homec="lvim ~/.config/home-manager/home.nix";
-      home="home-manager switch";
+      update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#nix-desktop'";
+      nixc="lvim ~/nix-config/desktop/nixos/configuration.nix";
+      reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#nix-desktop'";
+      homec="lvim ~/nix-config/desktop/home-manager/home.nix";
+      home="cd ~/nix-config/ && home-manager switch --flake '.#fw@nix-desktop'";
       sdg="sudo nix-collect-garbage -d";
       udg="nix-collect-garbage -d";
       df="df -h";
@@ -139,7 +127,7 @@
     enable = true;
     font = {
       name = "FiraCode Nerd Font";
-      size = 22;
+      size = 18;
     };
     shellIntegration = {
       enableZshIntegration = true;
