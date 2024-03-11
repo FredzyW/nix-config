@@ -8,10 +8,7 @@
   ...
 }: {
   imports = [
-    ../../common/dwm.nix {
-      dwmCommit = "99a1e812295bcf65625a4b5a0dc1022658977920";
-      dwmblocksCommit = "7c81c55390f2deec2a3804217abe80221ef6f46a";
-    }
+    ../../common/dwm.nix
     ../../common/kitty.nix
     ../../common/tmux.nix
     ../../common/zsh.nix {
