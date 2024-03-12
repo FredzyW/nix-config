@@ -8,13 +8,14 @@
   ...
 }: {
   imports = [
-    ../../common/dwm.nix
+    ./dwm.nix
     ../../common/kitty.nix
     ../../common/tmux.nix
     ./zsh.nix 
     ../../common/git.nix
     ../../common/nixpkgs.nix
     ../../common/firefox.nix
+    # inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   home.packages = with pkgs; [
@@ -42,6 +43,10 @@
     gimp
     openssh
     yt-dlp
+    hugo
+    flameshot
+    # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+    # lutris
   ];
 
   programs.home-manager.enable = true;
