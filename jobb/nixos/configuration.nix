@@ -14,6 +14,7 @@
 
   environment.systemPackages = with pkgs; [
     arion
+    vim
     wget
     pavucontrol
     alsa-utils
@@ -72,10 +73,10 @@
 
   virtualisation.docker = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
   };
 
   hardware = {
@@ -122,7 +123,7 @@
   };
 
   # TODO: Set your hostname
-  networking.hostName = "fw-laptop";
+  networking.hostName = "fw-jobb";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;

@@ -41,6 +41,7 @@
   };
 
   home.packages = with pkgs; [
+    lsof
     firefox
     thunderbird
     scrot
@@ -61,8 +62,25 @@
     darktable
     lazygit
     discord
-    slack
     yt-dlp
+    imagemagick
+    # VPN
+    networkmanagerapplet
+    networkmanager-l2tp
+    strongswan
+    ansible
+    # Jobb
+    slack
+    azure-cli
+    remmina
+    infisical
+    vscode
+    vscode-extensions.ms-dotnettools.csharp
+    netcoredbg
+    dotnet-sdk_8
+    mono5
+
+    dotnetPackages.Nuget
   ];
   programs.home-manager.enable = true;
 
