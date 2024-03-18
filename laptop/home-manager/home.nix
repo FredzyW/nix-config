@@ -9,7 +9,7 @@
 }: {
   imports = [
     ../../common/dwm.nix
-    ../../common/kitty.nix
+    ./kitty.nix
     ../../common/tmux.nix
     ./zsh.nix 
     ../../common/git.nix
@@ -17,9 +17,6 @@
     ../../common/firefox.nix
   ];
 
-  config.nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
   nixpkgs = {
     # You can add overlays here
     overlays = [
