@@ -8,13 +8,14 @@
   ...
 }: {
   imports = [
-    ../../common/dwm.nix
+    ../../common/dwm-2.nix
     ./kitty.nix
     ../../common/tmux.nix
     ./zsh.nix 
     ../../common/git.nix
     ../../common/nixpkgs.nix
     ../../common/firefox.nix
+    ../../common/zathura.nix
   ];
 
   nixpkgs = {
@@ -41,7 +42,12 @@
   };
 
   home.packages = with pkgs; [
+    networkmanager
     firefox
+    mpv
+    pavucontrol
+    git
+    alsa-utils
     thunderbird
     scrot
     feh
@@ -63,6 +69,32 @@
     discord
     slack
     yt-dlp
+    python3
+    python311Packages.pip
+
+    #VPN
+    openvpn
+    networkmanagerapplet
+    networkmanager-l2tp
+    strongswan
+    ansible
+
+    #Funk
+    cabal-install
+    ghc
+    haskellPackages.hoogle
+    haskellPackages.fast-tags
+    haskellPackages.haskell-debug-adapter
+
+    #Disk
+    clojure
+    leiningen
+
+    # Jobb
+    remmina
+    dotnet-sdk_8
+    mono5
+    dotnetPackages.Nuget
   ];
   programs.home-manager.enable = true;
 

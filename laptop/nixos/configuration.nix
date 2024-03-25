@@ -15,13 +15,9 @@
   environment.systemPackages = with pkgs; [
     arion
     wget
-    pavucontrol
-    alsa-utils
     killall
     upower
     dwmblocks
-    mpv
-    git
     gcc
     gnumake
     htop
@@ -72,10 +68,10 @@
 
   virtualisation.docker = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
   };
 
   hardware = {

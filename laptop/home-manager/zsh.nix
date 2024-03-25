@@ -56,7 +56,7 @@
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
       export PATH=/home/fw/.local/bin:$PATH
-      source ~/programs/powerlevel10k/powerlevel10k.zsh-theme
+      source ~/program/powerlevel10k/powerlevel10k.zsh-theme
     ";
   };
 }
