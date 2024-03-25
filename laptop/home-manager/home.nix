@@ -41,6 +41,8 @@
     };
   };
 
+  # nixpkgs.config.allowBroken = true;
+
   home.packages = with pkgs; [
     networkmanager
     firefox
@@ -82,9 +84,11 @@
     #Funk
     cabal-install
     ghc
+    haskellPackages.lsp-client
     haskellPackages.hoogle
     haskellPackages.fast-tags
-    haskellPackages.haskell-debug-adapter
+    # haskell-language-server
+    # haskellPackages.haskell-language-server
 
     #Disk
     clojure
