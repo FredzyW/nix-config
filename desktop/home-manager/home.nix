@@ -15,11 +15,15 @@
     ../../common/git.nix
     ../../common/nixpkgs.nix
     ../../common/firefox.nix
-    # inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   home.packages = with pkgs; [
+    networkmanager
     firefox
+    mpv
+    pavucontrol
+    git
+    alsa-utils
     thunderbird
     scrot
     feh
@@ -40,13 +44,46 @@
     lazygit
     discord
     slack
-    gimp
-    openssh
     yt-dlp
-    hugo
-    flameshot
-    # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
-    # lutris
+    python3
+    python311Packages.pip
+
+    #LSP
+    nil
+    python311Packages.python-lsp-server
+    marksman
+    clojure-lsp
+    omnisharp-roslyn
+    haskell-language-server
+    java-language-server
+    nodePackages_latest.bash-language-server
+    dockerfile-language-server-nodejs
+    yaml-language-server
+    ansible-language-server
+    lua-language-server
+
+    #VPN
+    openvpn
+    networkmanagerapplet
+    networkmanager-l2tp
+    strongswan
+    ansible
+
+    #Funk
+    cabal-install
+    ghc
+    haskellPackages.hoogle
+    haskellPackages.fast-tags
+
+    #Disk
+    clojure
+    leiningen
+
+    # Jobb
+    remmina
+    dotnet-sdk_8
+    mono5
+    dotnetPackages.Nuget
   ];
 
   programs.home-manager.enable = true;

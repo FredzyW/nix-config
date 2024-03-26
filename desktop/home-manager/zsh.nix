@@ -22,9 +22,10 @@
       ll="ls -al --color=auto";
       ccr="gcc intopt.c && ./a.out";
       update="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --flake '.#nix-desktop'";
-      nixc="lvim ~/nix-config/desktop/nixos/configuration.nix";
+      nixc="nvim ~/nix-config/desktop/nixos/configuration.nix";
       reb="cd ~/nix-config/ && sudo nixos-rebuild switch --flake '.#nix-desktop'";
-      homec="lvim ~/nix-config/desktop/home-manager/home.nix";
+      homec="nvim ~/nix-config/desktop/home-manager/home.nix";
+      nvimc="nvim ~/.config/nvim/init.lua";
       home="cd ~/nix-config/ && home-manager switch --flake '.#fw@nix-desktop'";
       sdg="sudo nix-collect-garbage -d";
       udg="nix-collect-garbage -d";

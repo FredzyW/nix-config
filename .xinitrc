@@ -12,9 +12,9 @@ fi
 xrdb -merge ~/.Xresources
 setxkbmap -option caps:swapescape
 
+feh --bg-scale ~/wallpapers/nix-black-4k.png
 dwmblocks &
 dunst &
-
 xbanish &
 
 exec dwm

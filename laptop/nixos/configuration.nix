@@ -66,10 +66,6 @@
 
   virtualisation.docker = {
     enable = true;
-    # rootless = {
-    #   enable = true;
-    #   setSocketVariable = true;
-    # };
   };
 
   hardware = {
@@ -83,7 +79,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
   environment.sessionVariables = {
-    EDITOR  = "lvim";
+    EDITOR  = "nvim";
     TERM = "xterm-256color";
   };
 

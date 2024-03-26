@@ -44,6 +44,15 @@
       ];
     };
   };
+  security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   # If you want to use JACK applications, uncomment this
+  #   #jack.enable = true;
+  # };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
@@ -74,24 +83,16 @@
 
   virtualisation.docker = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
   };
 
   hardware = {
     pulseaudio.enable = true;
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
   };
 
   # Enable networking
   networking.networkmanager.enable = true;
   environment.sessionVariables = {
-    EDITOR  = "lvim";
+    EDITOR  = "nvim";
     TERM = "xterm-256color";
   };
 
@@ -157,8 +158,9 @@
     openssh = {
       enable = true;
     };
-    blueman = {
+    locate = {
       enable = true;
+      locate = pkgs.mlocate;
     };
     xserver = {
       enable = true;

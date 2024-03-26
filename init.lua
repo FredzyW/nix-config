@@ -49,6 +49,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	'm4xshen/autoclose.nvim',
+	{'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 	{
 		"gbprod/substitute.nvim",
 		opts = {
@@ -147,20 +148,23 @@ require("ibl").setup()
 require('move').setup({})
 require("focus").setup()
 
+vim.opt.termguicolors = true
+require("bufferline").setup{}
+
 local opts = { noremap = true, silent = true }
 -- Normal-mode commands
-vim.keymap.set('n', '<C-j>', ':MoveLine(1)<CR>', opts)
-vim.keymap.set('n', '<C-k>', ':MoveLine(-1)<CR>', opts)
-vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
-vim.keymap.set('n', '<C-l>', ':MoveHChar(1)<CR>', opts)
+vim.keymap.set('n', '<J>', ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', '<K>', ':MoveLine(-1)<CR>', opts)
+-- vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
+-- vim.keymap.set('n','<C-l>',  ':MoveHChar(1)<CR>', opts)
 vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
 vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
 
 -- Visual-mode commands
-vim.keymap.set('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
-vim.keymap.set('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
-vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
-vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
+vim.keymap.set('v', '<J>', ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', '<K>', ':MoveBlock(-1)<CR>', opts)
+-- vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
+-- vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
 
 local function lsp()
     local clients = vim.lsp.buf_get_clients()
