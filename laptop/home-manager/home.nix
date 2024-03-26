@@ -38,6 +38,10 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+        "nix-2.16.2"
+      ];
     };
   };
 
@@ -74,21 +78,33 @@
     python3
     python311Packages.pip
 
+	#LSP
+    nil
+	python311Packages.python-lsp-server
+	marksman
+    clojure-lsp
+    omnisharp-roslyn
+    haskell-language-server
+	java-language-server
+	nodePackages_latest.bash-language-server
+	dockerfile-language-server-nodejs
+	yaml-language-server
+	ansible-language-server
+	lua-language-server
+
     #VPN
     openvpn
     networkmanagerapplet
     networkmanager-l2tp
     strongswan
     ansible
+	
 
     #Funk
     cabal-install
     ghc
-    haskellPackages.lsp-client
     haskellPackages.hoogle
     haskellPackages.fast-tags
-    # haskell-language-server
-    # haskellPackages.haskell-language-server
 
     #Disk
     clojure

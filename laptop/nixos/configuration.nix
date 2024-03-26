@@ -15,6 +15,7 @@
   environment.systemPackages = with pkgs; [
     arion
     wget
+    mlocate
     killall
     upower
     dwmblocks
@@ -35,9 +36,6 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-25.9.0"
-      ];
     };
   };
 
@@ -150,6 +148,10 @@
   services = {
     openssh = {
       enable = true;
+    };
+    locate = {
+      enable = true;
+      locate = pkgs.mlocate;
     };
     blueman = {
       enable = true;
