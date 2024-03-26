@@ -47,6 +47,7 @@
     yt-dlp
     python3
     python311Packages.pip
+	fzf
 
     #LSP
     nil
@@ -63,11 +64,14 @@
     lua-language-server
 
     #VPN
+	nm-applet
     openvpn
     networkmanagerapplet
     networkmanager-l2tp
+	networkmanager-openvpn
     strongswan
     ansible
+	libgnome-keyring
 
     #Funk
     cabal-install
@@ -87,6 +91,7 @@
   ];
 
   programs.home-manager.enable = true;
+  programs.nm-applet.enable = true;
 
   home.username = "fw";
   home.homeDirectory = "/home/fw";
