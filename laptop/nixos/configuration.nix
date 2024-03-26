@@ -145,6 +145,12 @@
     openssh = {
       enable = true;
     };
+	strongswan = {
+		enable = true;
+		secrets = [
+		  "ipsec.d/ipsec.nm-l2tp.secrets"
+		];
+	};
     locate = {
       enable = true;
       locate = pkgs.mlocate;
