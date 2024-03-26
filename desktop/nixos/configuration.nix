@@ -162,6 +162,12 @@
       enable = true;
       locate = pkgs.mlocate;
     };
+	strongswan = {
+		enable = true;
+		secrets = [
+		  "ipsec.d/ipsec.nm-l2tp.secrets"
+		];
+	};
     xserver = {
       enable = true;
       layout = "se";

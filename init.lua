@@ -1,28 +1,3 @@
--- Good navigation mappings for wrap
-vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
-
--- Buffer navigation
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
-
--- Window navigation
-vim.api.nvim_set_keymap('n', '<C-k>', ':wincmd k<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', ':wincmd j<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-h>', ':wincmd h<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', ':wincmd l<CR>', { silent = true })
-
-vim.api.nvim_set_keymap('n', '<Space>c', ':bd<CR>', { silent = true })
-
--- Highlight yanked
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('highlight_yank', {}),
-  desc = 'Hightlight selection on yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
-  end,
-})
 
 
 vim.opt.wrap = true
@@ -49,6 +24,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	'm4xshen/autoclose.nvim',
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp"
+	},
+	{'kevinhwang91/nvim-bqf'},
 	{'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 	{
 		"gbprod/substitute.nvim",
@@ -79,6 +62,20 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
+	},
+	{
+		"michaelb/sniprun",
+		branch = "master",
+
+		build = "sh install.sh",
+		-- do 'sh install.sh 1' if you want to force compile locally
+		-- (instead of fetching a binary from the github release). Requires Rust >= 1.65
+
+		config = function()
+		  require("sniprun").setup({
+		  -- your options
+		  })
+		end,
 	},
 	{
 	'nvim-telescope/telescope.nvim', tag = '0.1.6',
@@ -129,8 +126,14 @@ require("lazy").setup({
 			-- add any options here
 		},
 		lazy = false,
-	}
+	},
+	'ggandor/leap.nvim'
 })
+
+vim.keymap.set('n',        'z', '<Plug>(leap)')
+vim.keymap.set('n',        'Z', '<Plug>(leap-from-window)')
+vim.keymap.set({'x', 'o'}, 'z', '<Plug>(leap-forward)')
+vim.keymap.set({'x', 'o'}, 'Z', '<Plug>(leap-backward)')
 
 require("autoclose").setup({
    keys = {
@@ -138,12 +141,8 @@ require("autoclose").setup({
    },
 })
 
--- Lua
-vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
-vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
-vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
-vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
 
+require('bqf').setup()
 require("ibl").setup()
 require('move').setup({})
 require("focus").setup()
@@ -151,20 +150,6 @@ require("focus").setup()
 vim.opt.termguicolors = true
 require("bufferline").setup{}
 
-local opts = { noremap = true, silent = true }
--- Normal-mode commands
-vim.keymap.set('n', '<J>', ':MoveLine(1)<CR>', opts)
-vim.keymap.set('n', '<K>', ':MoveLine(-1)<CR>', opts)
--- vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
--- vim.keymap.set('n','<C-l>',  ':MoveHChar(1)<CR>', opts)
-vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
-vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
-
--- Visual-mode commands
-vim.keymap.set('v', '<J>', ':MoveBlock(1)<CR>', opts)
-vim.keymap.set('v', '<K>', ':MoveBlock(-1)<CR>', opts)
--- vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
--- vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
 
 local function lsp()
     local clients = vim.lsp.buf_get_clients()
@@ -220,32 +205,78 @@ require('lualine').setup {
   extensions = {}
 }
 
+local opts = { noremap = true, silent = true }
 
+-- Substitute
+vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
+vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
+vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
+vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
+
+-- Move commands
+vim.keymap.set('n', '<J>', ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', '<K>', ':MoveLine(-1)<CR>', opts)
+-- vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
+-- vim.keymap.set('n','<C-l>',  ':MoveHChar(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+vim.keymap.set('v', '<J>', ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', '<K>', ':MoveBlock(-1)<CR>', opts)
+-- vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
+-- vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
+
+-- Good navigation mappings for wrap
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
+
+-- Buffer navigation
+vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
+
+-- Window navigation
+vim.api.nvim_set_keymap('n', '<C-k>', ':wincmd k<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':wincmd j<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-h>', ':wincmd h<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', ':wincmd l<CR>', { silent = true })
+
+vim.api.nvim_set_keymap('n', '<Space>c', ':bd<CR>', { silent = true })
+
+-- Sniprun
+vim.api.nvim_set_keymap('v', 'f', '<Plug>SnipRun', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>SnipRunOperator', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ff', '<Plug>SnipRun', {silent = true})
+
+-- Highlight yanked
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 }
+  end,
+})
 
 local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<Space>w', ':w<CR>', {})
---vim.keymap.set('n', '<Space>e', ':Neotree toggle<CR>', {})
---vim.keymap.set('n', '<Space>q', ':q<CR>', {})
+
+-- Telescope bindings
 vim.keymap.set('n', '<Space>ff', builtin.find_files, {})
 vim.keymap.set('n', '<Space>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<Space>fb', builtin.buffers, {})
 vim.keymap.set('n', '<Space>fh', builtin.help_tags, {})
 
 
--- Define leader key
+-- Bindings for save and quit
 vim.api.nvim_set_keymap('n', '<Space>w', ':w<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree toggle<CR>', {noremap = true, silent = true})
---vim.api.nvim_set_keymap('n', '<Space>f', builtin.find_files, {noremap = true, silent = true})
-
--- Define leader key followed by 'q' to quit
 vim.api.nvim_set_keymap('n', '<Space>q', ':q<CR>', {})
 
+-- Neotree bindings
+vim.api.nvim_set_keymap('n', '<Space>e', ':Neotree toggle<CR>', {noremap = true, silent = true})
 
+
+-- LSP Setup
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
 require'lspconfig'.hls.setup{}
